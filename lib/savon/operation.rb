@@ -7,6 +7,8 @@ require "savon/request_logger"
 
 module Savon
   class Operation
+    attr_reader :name
+
 
     def self.create(operation_name, wsdl, globals)
       if wsdl.document?

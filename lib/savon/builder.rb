@@ -17,7 +17,14 @@ module Savon
       2 => "http://www.w3.org/2003/05/soap-envelope"
     }
 
-    WSA_NAMESPACE = "http://www.w3.org/2005/08/addressing"
+    WSA_NAMESPACES = {
+        'xmlns:wsa'   => 'http://schemas.xmlsoap.org/ws/2004/08/addressing',
+        'xmlns:wsse'  => 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd',
+        'xmlns:wsu'   => 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+    }
+
+    attr_reader :operation_name
+
 
     def initialize(operation_name, wsdl, globals, locals)
       @operation_name = operation_name
@@ -68,7 +75,8 @@ module Savon
     end
 
     def header_attributes
-      @globals[:use_wsa_headers] ? { 'xmlns:wsa' => WSA_NAMESPACE } : {}
+      {}
+      # @globals[:use_wsa_headers] ? { 'xmlns:wsa' => WSA_NAMESPACE } : {}
     end
 
     def body_attributes
@@ -110,7 +118,11 @@ module Savon
     end
 
     def namespaces_with_globals
-      namespaces.merge @globals[:namespaces]
+      namespaces.merge! @globals[:namespaces]
+      if @globals[:use_wsa_headers]
+        namespaces.merge! WSA_NAMESPACES
+      end
+      namespaces
     end
 
     def namespaces

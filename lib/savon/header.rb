@@ -2,6 +2,7 @@ require "akami"
 require "gyoku"
 require "uuid"
 
+
 module Savon
   class Header
 
@@ -60,8 +61,11 @@ module Savon
        return '' unless @globals[:use_wsa_headers]
        convert_to_xml({
          'wsa:Action' => @locals[:soap_action],
-         'wsa:To' => @globals[:endpoint],
-         'wsa:MessageID' => "urn:uuid:#{UUID.new.generate}"
+         'wsa:MessageID' => "urn:uuid:#{UUID.new.generate}",
+         'wsa:ReplyTo' => {
+             'wsa:Address' => 'http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous'
+         },
+         'wsa:To' => @globals[:endpoint]
        })
     end
 
@@ -74,13 +78,16 @@ module Savon
     end
 
     def akami
-      wsse = Akami.wsse
-      wsse.credentials(*wsse_auth) if wsse_auth
-      wsse.timestamp = wsse_timestamp if wsse_timestamp
-      if wsse_signature && wsse_signature.have_document?
-        wsse.signature = wsse_signature
+      if wsse_auth.is_a? Hash
+        wsse = Akami.wsse2 wsse_auth
+      else
+        wsse = Akami.wsse
+        wsse.credentials(*wsse_auth) if wsse_auth
+        wsse.timestamp = wsse_timestamp if wsse_timestamp
+        if wsse_signature && wsse_signature.have_document?
+          wsse.signature = wsse_signature
+        end
       end
-
       wsse
     end
 

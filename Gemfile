@@ -3,6 +3,7 @@ gemspec
 
 gem "httpclient", "~> 2.3.4"
 
+gem 'akami', path: '../akami'
 gem "simplecov", :require => false
 gem "coveralls", :require => false
 gem "uuid"

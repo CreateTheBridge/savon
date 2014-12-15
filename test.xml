@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soap:Header>
+    <wsa:Action>http://fortisutility.com/getServiceAreaList</wsa:Action>
+    <wsa:MessageID>urn:uuid:a739002c-9330-472d-bb1e-bdda07f40146</wsa:MessageID>
+    <wsa:ReplyTo>
+      <wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+    </wsa:ReplyTo>
+    <wsa:To>https://www.texpoenergy.com/fuws/enrollment.asmx</wsa:To>
+    <wsse:Security soap:mustUnderstand="1">
+      <wsu:Timestamp wsu:Id="Timestamp-b1ef968e-2cfc-4f2d-9d42-83bde7e15dbc">
+        <wsu:Created>2014-12-13T01:00:53Z</wsu:Created>
+        <wsu:Expires>2014-12-13T01:05:53Z</wsu:Expires>
+      </wsu:Timestamp>
+      <wsse:UsernameToken wsu:Id="SecurityToken-2980ceab-6c53-4797-9f8c-a56dd0fdce95">
+        <wsse:Username>1a993b9e-4c15-4012-8ec0-2b5cb7163324</wsse:Username>
+        <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">s3@rchf0r3n3rgy</wsse:Password>
+        <wsse:Nonce>Em1JunXvgoVCkB+Fz0QKSQ==</wsse:Nonce>
+        <wsu:Created>2014-12-13T01:00:53Z</wsu:Created>
+      </wsse:UsernameToken>
+    </wsse:Security>
+  </soap:Header>
+  <soap:Body>
+    <getServiceAreaList xmlns="http://fortisutility.com/" />
+  </soap:Body>
+</soap:Envelope>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" soap:mustUnderstand="1">
+  <wsse:UsernameToken>
+    <wsse:Username>user</wsse:Username>
+    <wsse:Password>password</wsse:Password>
+    <wsse:Nonce>6ad95cadd747dafd07e4df2555c7a66d11ed7f03</wsse:Nonce>
+  </wsse:UsernameToken>
+  <wsse:Timestamp>
+    <wsu:Created>2014-12-13T23:27:02Z</wsu:Created>
+    <wsu:Expires>2014-12-13T23:28:02Z</wsu:Expires>
+  </wsse:Timestamp>
+</wsse:Security>
+
+
