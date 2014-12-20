@@ -201,7 +201,7 @@ module Savon
 
     def builder
       builder = ::Builder::XmlMarkup.new
-      builder.instruct!(:xml, :encoding => @globals[:encoding])
+      # builder.instruct!(:xml, :encoding => @globals[:encoding])
       builder
     end
 
